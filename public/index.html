@@ -7,6 +7,9 @@
     <p>Hello World</p>
 
     <button onClick="question6()">click me</button>
+    <button onClick="question7()">sort</button>
+
+    <table id="table"></table>
     <script>
       const users = [
         {
@@ -61,13 +64,14 @@
       }
 
       // for question 6
+      var data = returnUsers(users);
+
       function question6() {
-        var data = returnUsers(users);
         createTable(data);
       }
 
       function createTable(data) {
-        var table = document.createElement("table");
+        var table = document.getElementById("table");
         var tableBody = document.createElement("tbody");
 
         data.forEach(function (rowData) {
@@ -83,7 +87,21 @@
         });
 
         table.appendChild(tableBody);
-        document.body.appendChild(table);
+      }
+
+      // question 7
+      function compare(a, b) {
+        return a
+          .toString()
+          .toLowerCase()
+          .localeCompare(b.toString().toLowerCase());
+      }
+      function question7() {
+        var sortedData = data.sort(compare);
+        var table = document.getElementById("table");
+        table.innerHTML = "";
+
+        createTable(sortedData);
       }
     </script>
   </body>
