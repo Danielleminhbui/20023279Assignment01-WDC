@@ -6,6 +6,7 @@
   <body>
     <p>Hello World</p>
 
+    <button onClick="question6()">click me</button>
     <script>
       const users = [
         {
@@ -49,6 +50,7 @@
         },
       ];
 
+      //question 5
       function returnUsers(users) {
         const result = users.map(({ personalInfo, email }) => [
           personalInfo.name,
@@ -58,7 +60,31 @@
         return result;
       }
 
-      console.log(returnUsers(users));
+      // for question 6
+      function question6() {
+        var data = returnUsers(users);
+        createTable(data);
+      }
+
+      function createTable(data) {
+        var table = document.createElement("table");
+        var tableBody = document.createElement("tbody");
+
+        data.forEach(function (rowData) {
+          var row = document.createElement("tr");
+
+          rowData.forEach(function (cellData) {
+            var cell = document.createElement("td");
+            cell.appendChild(document.createTextNode(cellData));
+            row.appendChild(cell);
+          });
+
+          tableBody.appendChild(row);
+        });
+
+        table.appendChild(tableBody);
+        document.body.appendChild(table);
+      }
     </script>
   </body>
 </html>
